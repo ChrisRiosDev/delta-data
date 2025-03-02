@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS credito;
+
+CREATE TABLE credito (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cliente TEXT NOT NULL,
+    monto NUMERIC NOT NULL,
+    tasa_interes NUMERIC NOT NULL,
+    plazo INTEGER NOT NULL,
+    fecha_otorgamiento TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
