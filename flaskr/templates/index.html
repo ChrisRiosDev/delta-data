@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditos</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Creditos</h1>
+    <div class="container">
+        <div class="formulario-credito">
+            <h3>Registrar credito</h3>
+            <form>
+                <label for="cliente">Cliente</label>
+                <input type="text" id="cliente" name="cliente" required>
+                <label for="monto">Monto</label>
+                <input type="text" id="monto" name="monto" required>
+                <label for="interes">Interes</label>
+                <input type="text" id="tasa_interes" name="tasa_interes" required> 
+                <label for="plazo">Plazo</label>
+                <input type="text" id="plazo" name="plazo" required>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+        <div id="tabla-credito">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Monto</th>
+                        <th>Tasa de interés</th>
+                        <th>Plazo</th>
+                        <th>Fecha otorgamiento</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
