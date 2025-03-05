@@ -22,8 +22,12 @@ Un crédito tiene los siguientes datos los cuales estructuran la tabla en SQL:
 - **/ (Home)**
 Muestra la interfaz para el CRUD de créditos.
 
+![image](https://github.com/user-attachments/assets/82d176cf-1164-42af-b850-8b8598c8f873)
+
 - **/dashboard**
 Muestra una gráfica con la distribución de montos.
+![image](https://github.com/user-attachments/assets/6a8af26f-ff81-4dc6-a17e-a015b3affa7a)
+
 
 ### API
 
