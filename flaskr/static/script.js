@@ -142,9 +142,9 @@ document.getElementById('submit').addEventListener('click', async function (even
     // Objeto Credito
     const credito = {
         cliente: clienteInput.value,
-        monto: montoInput.value,
-        tasa_interes: tasaInteresInput.value,
-        plazo: plazoInput.value,
+        monto: parseFloat(montoInput.value),
+        tasa_interes: parseFloat(tasaInteresInput.value),
+        plazo: parseInt(plazoInput.value),
         fecha_otorgamiento: fechaInput.value
     };
 
