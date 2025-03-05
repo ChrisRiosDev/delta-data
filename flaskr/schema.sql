@@ -6,5 +6,5 @@ CREATE TABLE credito (
     monto NUMERIC NOT NULL,
     tasa_interes NUMERIC NOT NULL,
     plazo INTEGER NOT NULL,
-    fecha_otorgamiento TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    fecha_otorgamiento DATE NOT NULL DEFAULT CURRENT_DATE
 );

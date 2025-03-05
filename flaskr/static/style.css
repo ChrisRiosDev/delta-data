@@ -15,9 +15,14 @@ h1, h3{
 
 h1 {
     padding: 20px;
+    display: inline-block;
 }
 
-  
+h2 {
+    color: #315bce;
+    display: inline-block;
+}
+
 .container {
     display: grid;
     grid-template-columns: 300px 1fr; 
@@ -58,6 +63,7 @@ input{
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0 0 3px #ddd;
+    margin-bottom: 40px;
 }
 
 table {
@@ -75,6 +81,10 @@ tr  {
     border-bottom: 1px solid #ddd;
 }
 
+tr:last-child  {
+    border-bottom: 0px;
+}
+
 td, th {
     padding: 10px;
 }
@@ -87,6 +97,88 @@ table th:first-child{
     border-radius:10px 0 0 0;
   }
   
-  table th:last-child{
-    border-radius:0 10px 0 0;
-  }
+table th:last-child{
+border-radius:0 10px 0 0;
+}
+
+button {
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+a{
+    color: white;
+    border: none;
+    border-radius: 20px;
+    background-color: #315bce;
+    padding: 10px 20px;
+    margin-top: 40px;
+    float: right;
+    text-decoration: none;
+}
+
+#submit {
+    background-color: #315bce;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-right: 15px;
+    float: right;
+}
+
+#cancel {
+    background-color: #ff3030;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-right: 15px;
+    float: left;
+}
+
+.editar{
+    background-color: #ffffff;
+    color: #ffcc00;
+    margin-right: 10px;
+    font-size: medium;
+}
+
+.eliminar{
+    background-color: #ffffff;
+    color: #ff3030;
+    font-size: medium;
+}
+
+.grafico {
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 3px #ddd;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+.rango-barras{
+    display: inline-block;
+    float: right;
+}
+
+#barras-label {
+    padding-right: 20px;
+    display: inline-block;
+}
+
+#n-barras {
+    display: inline-block;
+}
+
+#barras-input {
+    display: block;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+#myChart {
+    margin-left: 120px;
+    margin-right: 120px;
+}

@@ -4,7 +4,7 @@ from datetime import datetime
 import click
 from flask import current_app, g
 
-
+# Conexion a base de datos
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -12,33 +12,27 @@ def get_db():
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row
-
     return g.db
 
-
+# Cerrar conexión a base de datos
 def close_db(e=None):
     db = g.pop('db', None)
 
     if db is not None:
         db.close()
 
+#Inicializar la base de datos
 def init_db():
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
-
 @click.command('init-db')
 def init_db_command():
-    """Clear the existing data and create new tables."""
+    # Crear nueva tabla de base de datos
     init_db()
     click.echo('Initialized the database.')
-
-
-sqlite3.register_converter(
-    "timestamp", lambda v: datetime.strptime(v.decode(), "%Y-%m-%d %H:%M:%S")
-)
 
 def init_app(app):
     app.teardown_appcontext(close_db)

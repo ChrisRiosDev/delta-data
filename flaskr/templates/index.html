@@ -6,13 +6,18 @@
     <title>Creditos</title>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <h1>Creditos</h1>
+    <header>
+        <h1>Creditos</h1>
+        <a href="{{ url_for('dashboard') }}">Dashboard <i class="fa fa-chart-line"></i></a>
+    </header>
     <div class="container">
         <div class="formulario-credito">
-            <h3>Registrar credito</h3>
+            <h3 id="titulo-formulario">Registrar credito</h3>
             <form>
+                <input type="hidden" id="id" name="id" value="">
                 <label for="cliente">Cliente</label>
                 <input type="text" id="cliente" name="cliente" required>
                 <label for="monto">Monto</label>
@@ -21,7 +26,10 @@
                 <input type="text" id="tasa_interes" name="tasa_interes" required> 
                 <label for="plazo">Plazo</label>
                 <input type="text" id="plazo" name="plazo" required>
-                <button type="submit">Guardar</button>
+                <label for="fecha">Fecha de otorgamiento</label>
+                <input type="date" id="fecha_otorgamiento" name="fecha_otorgamiento" required>
+                <button id="submit" type="submit">Guardar</button>
+                <button id="cancel" type="cancel">Cancelar</button>
             </form>
         </div>
         <div id="tabla-credito">

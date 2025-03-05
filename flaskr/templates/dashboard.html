@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creditos</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard creditos</h1>
+        <a href="{{ url_for('index') }}">Home <i class="fas fa-home"></i></a>
+    </header>
+    <div class = "grafico">
+        <h2>Distribución de montos</h2>
+        <div class="rango-barras">
+            <label id="barras-label">Cantidad de barras: </label>
+            <p id="n-barras">10</p>
+            <input id="barras-input" type="range" min="1" max="20" step="1"/>
+        </div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        const barrasInput = document.getElementById('barras-input');
+        const nBarras = document.getElementById('n-barras');
+        myChart = null;
+
+        // Obtener los montos desde el servidor
+        const montos = {{ montos | tojson }};
+
+        // Variables para el rango de montos
+        const montoMax = Math.max(...montos)+1;
+        const montoMin = Math.min(...montos);
+        const rangoMonto = montoMax - montoMin;
+
+        function obtenerRango(i) {
+            const inferior = montoMin + i * rangoMonto / barrasInput.value;
+            const superior = montoMin + (i + 1) * rangoMonto / barrasInput.value;
+            return [inferior, superior];
+        }
+
+        function actualizarGrafica() {
+            // Arreglo de rangos
+            const rangos = Array.from(
+                {length: barrasInput.value}, 
+                (_, i) => obtenerRango(i)
+            );
+
+            // Arreglo de etiquetas por rango
+            const labels = rangos.map(n => n.map(n => Math.trunc(n)).join(' - '));
+
+            // Frecuencia de montos por rango
+            const data = rangos.map(rango => montos.filter(monto => monto >= rango[0] && monto < rango[1]).length);
+
+            const dataset = {
+                label: 'Monto',
+                data: data,
+            };
+
+            if(myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [dataset]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            ticks: {
+                                stepSize: 1
+                                
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+        
+        barrasInput.addEventListener('input', () => {
+            nBarras.textContent = barrasInput.value;
+            actualizarGrafica();
+        });
+
+        actualizarGrafica();
+    </script>
+</body>
+</html>

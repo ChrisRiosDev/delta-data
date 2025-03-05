@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 
 def create_app(test_config=None):
@@ -24,21 +24,27 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
-    
     @app.route('/')
     def index():
         return render_template('index.html')
 
-    # do the registration of the database functions
+    @app.route('/dashboard')
+    def dashboard():
+        with app.test_client() as client:
+            response = client.get('/api/credito')
+            if response.status_code != 200:
+                return jsonify({'error': 'Falla interna al obtener datos'}), 500
+
+            creditos = response.get_json()
+            montos = [credito['monto'] for credito in creditos]
+            
+            return render_template('dashboard.html', montos=montos)
+
+    # Registrar funciones de bases de datos
     from . import db
     db.init_app(app)
 
-    # do the registration of the api functions
+    # Registrar funciones de api
     from . import api
     app.register_blueprint(api.bp)
 
