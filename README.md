@@ -26,6 +26,7 @@ Muestra la interfaz para el CRUD de créditos.
 
 - **/dashboard**
 Muestra una gráfica con la distribución de montos.
+
 ![image](https://github.com/user-attachments/assets/6a8af26f-ff81-4dc6-a17e-a015b3affa7a)
 
 
